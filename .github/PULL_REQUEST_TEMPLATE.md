@@ -40,3 +40,4 @@ Text in comments like this one is ignored.
 - [ ] README and examples are up to date
 - [ ] `terraform fmt`, `terraform validate`, and `terraform test` pass
 - [ ] The change is backwards compatible, or the bump above is Major
+
