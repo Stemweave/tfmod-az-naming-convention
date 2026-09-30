@@ -1,0 +1,20 @@
+name: Discord module release notification
+
+on:
+  workflow_run:
+    workflows: [Semantic versioning]
+    types: [completed]
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  notify:
+    if: github.event.workflow_run.event == 'push' && github.event.workflow_run.conclusion == 'success'
+    permissions:
+      contents: read
+    uses: Stemweave/shared-workflows/.github/workflows/discord-release-notification.yml@main
+    with:
+      commit_sha: ${{ github.event.workflow_run.head_sha }}
+    secrets:
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_RELEASE_WEBHOOK_URL }}
