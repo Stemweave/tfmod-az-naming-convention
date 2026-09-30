@@ -18,14 +18,14 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-    uses: Stemweave/shared-workflows/.github/workflows/semantic-version-pr-check.yml@v1
+    uses: Stemweave/shared-workflows/.github/workflows/semantic-version-pr-check.yml
 
   release:
     if: github.event_name == 'push'
     permissions:
       contents: write
       pull-requests: read
-    uses: Stemweave/shared-workflows/.github/workflows/semantic-version-release.yml@v1
+    uses: Stemweave/shared-workflows/.github/workflows/semantic-version-release.yml
     # Releases made with the default token don't start other workflows. If something should run on
     # the new tag, create a GitHub App or token with contents write, store it as RELEASE_TOKEN, and
     # uncomment this.
