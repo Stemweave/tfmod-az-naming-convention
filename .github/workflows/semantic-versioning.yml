@@ -1,0 +1,33 @@
+name: Semantic versioning
+
+# Checks the pull request description picks a version bump, and publishes the release when the
+# pull request merges. The logic lives in Stemweave/shared-workflows; this file only wires it up.
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  # Make "pr-description / validate" a required status check in the branch protection or ruleset.
+  pr-description:
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: read
+    uses: Stemweave/shared-workflows/.github/workflows/semantic-version-pr-check.yml@v1
+
+  release:
+    if: github.event_name == 'push'
+    permissions:
+      contents: write
+      pull-requests: read
+    uses: Stemweave/shared-workflows/.github/workflows/semantic-version-release.yml@v1
+    # Releases made with the default token don't start other workflows. If something should run on
+    # the new tag, create a GitHub App or token with contents write, store it as RELEASE_TOKEN, and
+    # uncomment this.
+    # secrets:
+    #   RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}

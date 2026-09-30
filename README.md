@@ -25,7 +25,7 @@ Call the module once and list every resource you want a name for:
 
 ```hcl
 module "naming" {
-  source = "git::https://github.com/<org>/tfmod-naming-convention.git?ref=v1.0.0"
+  source = "git::https://github.com/Stemweave/tfmod-az-naming-convention.git?ref=v1.0.0"
 
   project_name = var.project_name
   type         = var.type
@@ -236,6 +236,19 @@ check the new data.
 Regenerating overwrites `resource_types.tf`. To change a rule or add a type for good, use
 `custom_resource_types` instead of editing that file, or the change will be lost. The
 `supported_resource_types` output shows every type the module knows, including your custom ones.
+
+## Releases
+
+Versions are made from the pull request description. The author ticks Major, Minor, Patch, or None
+under **Version bump**, and merging publishes the release. Pin a version in your calls:
+
+```hcl
+source = "git::https://github.com/Stemweave/tfmod-az-naming-convention.git?ref=v1.0.0"
+```
+
+A Major release means a caller must change something, so read its notes before upgrading. Changes
+to the built-in resource types or region codes can change the names the module produces, so
+they count as a Major change when they would rename an existing resource.
 
 ## Development
 
