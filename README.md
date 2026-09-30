@@ -246,6 +246,10 @@ under **Version bump**, and merging publishes the release. Pin a version in your
 source = "git::https://github.com/Stemweave/tfmod-az-naming-convention.git?ref=v1.0.0"
 ```
 
+Each new version is announced in Discord, and pull requests are announced as they are opened,
+merged, or closed. The messages need the organization secrets `DISCORD_PR_WEBHOOK_URL` and
+`DISCORD_RELEASE_WEBHOOK_URL`; without them the workflows do nothing.
+
 A Major release means a caller must change something, so read its notes before upgrading. Changes
 to the built-in resource types or region codes can change the names the module produces, so
 they count as a Major change when they would rename an existing resource.

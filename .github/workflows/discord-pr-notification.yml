@@ -1,0 +1,14 @@
+name: Discord PR notification
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review, closed]
+
+permissions: {}
+
+jobs:
+  notify:
+    permissions: {}
+    uses: Stemweave/shared-workflows/.github/workflows/discord-pr-notification.yml@main
+    secrets:
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_PR_WEBHOOK_URL }}
